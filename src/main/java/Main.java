@@ -12,9 +12,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
         VideoCap vc = new VideoCap();
-        vc.getFrame();
-
-
+        vc.displayImage(vc.mat2img(vc.getFrame()));
     }
 }
