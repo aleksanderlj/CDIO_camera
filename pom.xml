@@ -6,13 +6,8 @@
 
     <groupId>org.example</groupId>
     <artifactId>CDIO_camera</artifactId>
-    <packaging>war</packaging>
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
