@@ -1,6 +1,7 @@
 import nu.pattern.OpenCV;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
 import java.awt.*;
@@ -14,6 +15,12 @@ public class Main {
     public static void main(String[] args) {
 
         VideoCap vc = new VideoCap();
-        vc.displayImage(vc.mat2img(vc.getFrame()));
+        Imgcodecs.imwrite("test.png", vc.getFrame());
+        //vc.displayImage(vc.mat2img(vc.getFrame()));
+
+        System.out.println("Exiting...");
+
+        vc.
+        System.exit(0);
     }
 }

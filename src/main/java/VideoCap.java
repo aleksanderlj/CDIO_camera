@@ -11,7 +11,7 @@ public class VideoCap {
     JFrame window;
 
     public VideoCap(){
-        cam = new VideoCapture(0);
+        cam = new VideoCapture(1);
         window = new JFrame("Cam");
     }
 
