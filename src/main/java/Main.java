@@ -5,6 +5,7 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
 import java.awt.*;
+import java.util.Scanner;
 
 public class Main {
     static {
@@ -12,15 +13,22 @@ public class Main {
         //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         VideoCap vc = new VideoCap();
-        Imgcodecs.imwrite("test.png", vc.getFrame());
-        //vc.displayImage(vc.mat2img(vc.getFrame()));
 
+        try {
+            Imgcodecs.imwrite("test.png", vc.getFrame());
+            vc.displayImage(vc.mat2img(vc.getFrame()));
+        } catch (Exception e){
+            e.printStackTrace();
+            vc.close();
+            System.exit(0);
+        }
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
+        vc.close();
         System.out.println("Exiting...");
-
-        vc.
         System.exit(0);
     }
 }
