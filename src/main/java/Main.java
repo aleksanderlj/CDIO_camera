@@ -18,8 +18,10 @@ public class Main {
         VideoCap vc = new VideoCap();
 
         try {
-            Imgcodecs.imwrite("test.png", vc.getFrame());
-            vc.displayImage(vc.mat2img(vc.getFrame()));
+            //Imgcodecs.imwrite("test.png", vc.getFrame());
+            vc.displayVideo();
+            //vc.updateWindow(vc.isolateColor(vc.getFrame(), null, null));
+
         } catch (Exception e){
             e.printStackTrace();
             vc.close();
