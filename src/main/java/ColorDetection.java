@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class ColorDetection {
@@ -19,7 +20,7 @@ public class ColorDetection {
     public JLabel input;
     public JLabel output;
     public Mat hsvImage;
-    public Mat mask1, mask2;
+    public Mat mask, mask1, mask2;
     private ImageIcon icon1, icon2;
 
 
@@ -28,6 +29,7 @@ public class ColorDetection {
         Mat in;
         Mat blurredImage = new Mat();
         Mat outputImage = new Mat();
+        mask = new Mat();
         mask1 = new Mat();
         mask2 = new Mat();
         hsvImage = new Mat();
@@ -41,13 +43,14 @@ public class ColorDetection {
         Imgproc.blur(in, blurredImage, new Size(3, 3));
         Imgproc.cvtColor(blurredImage, hsvImage, Imgproc.COLOR_BGR2HSV);
 
-        Core.inRange(hsvImage,  new Scalar(0,100, 60), new Scalar(10, 255, 255), mask1);
-        Core.inRange(hsvImage, new Scalar(170, 100, 60), new Scalar(180, 255, 255), mask2);
+        Core.inRange(hsvImage,  new Scalar(0,50, 155), new Scalar(5, 255, 255), mask1);
+        Core.inRange(hsvImage, new Scalar(175, 50, 155), new Scalar(180, 255, 255), mask2);
 
+        Core.bitwise_or(mask1, mask2, mask);
         //mask1 = mask1 + mask2;
 
         //Imgproc.cvtColor(mask, outputImage, Imgproc.COLOR_HSV2BGR);
-        imgOut = matToBufferedImage(mask1);
+        imgOut = matToBufferedImage(mask);
 
         input = new JLabel();
         output = new JLabel();
@@ -65,8 +68,20 @@ public class ColorDetection {
 
     }
 
+    private Mat OrMat(Mat mat1, Mat mat2){
+        Mat mat = new Mat();
+
+        for(int i = 0; i < mat1.width(); i++){
+            for(int j = 0; j < mat1.height(); j++){
+
+            }
+        }
+
+        return mat;
+    }
+
     /*https://github.com/opencv-java/object-detection/commit/b6c2afe355c34ff6b103961142f5f0e2601d024f*/
-    private static BufferedImage matToBufferedImage(Mat original)
+    private BufferedImage matToBufferedImage(Mat original)
     {
         // init
         BufferedImage image = null;
@@ -92,7 +107,7 @@ public class ColorDetection {
 
         nu.pattern.OpenCV.loadShared();
 
-        ColorDetection cd = new ColorDetection("res/level.png");
+        ColorDetection cd = new ColorDetection("res/cards.jpg");
         cd.frame.setPreferredSize(new Dimension(1360, 640));
         cd.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // reagér paa luk
         cd.frame.pack();                       // saet vinduets stoerrelse
